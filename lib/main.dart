@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -35,7 +34,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     focusNode.addListener(() {
       setState(() {
@@ -60,14 +58,27 @@ class _MyHomePageState extends State<MyHomePage> {
               focusNode: focusNode,
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return const NewsPage();
-                  }));
-                },
-                child: const Text('go to news page')),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                  },
+                  child: const Text('unfocus'),
+                ),
+                const SizedBox(width: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return const NewsPage();
+                    }));
+                  },
+                  child: const Text('go to news page'),
+                ),
+              ],
+            )
           ],
         ),
       ),
